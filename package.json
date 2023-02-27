@@ -22,10 +22,6 @@
     "react-native",
     "navermap"
   ],
-  "peerDependencies": {
-    "react": "16.8.6",
-    "react-native": "0.60.5"
-  },
   "devDependencies": {
     "@types/react": "^16.8.15",
     "@types/react-native": "^0.57.51",
