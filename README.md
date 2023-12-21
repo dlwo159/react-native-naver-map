@@ -181,6 +181,7 @@ interface NaverMapViewProps {
     useTextureView?: boolean; // android only
 }
 /// component method
+setZoom: (zoom: number) => void;
 animateToCoordinate: (coord: Coord) => void;
 animateToTwoCoordinates: (c1: Coord, c2: Coord) => void;
 animateToCoordinates: (coords: Coord[], bounds?: {

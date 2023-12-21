@@ -39,6 +39,7 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
     private static final int SET_LOCATION_TRACKING_MODE = 4;
     private static final int ANIMATE_TO_COORDINATES = 6;
     private static final int SET_LAYER_GROUP_ENABLED = 7;
+    private static final int SET_ZOOM = 8;
     private static final List<String> LAYER_GROUPS = Collections.unmodifiableList(Arrays.asList(
             NaverMap.LAYER_GROUP_BUILDING,
             NaverMap.LAYER_GROUP_TRANSIT,
@@ -321,6 +322,9 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
                         break;
                 }
                 break;
+            case SET_ZOOM:
+                mapView.setZoom(args.getInt(0));
+                break;
         }
     }
 
@@ -333,6 +337,7 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
                 .put("setLocationTrackingMode", SET_LOCATION_TRACKING_MODE)
                 .put("animateToCoordinates", ANIMATE_TO_COORDINATES)
                 .put("setLayerGroupEnabled", SET_LAYER_GROUP_ENABLED)
+                .put("setZoom", SET_ZOOM)
                 .build();
     }
 
