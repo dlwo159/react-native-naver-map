@@ -211,7 +211,7 @@ RCT_EXPORT_METHOD(animateToCoordinate:(nonnull NSNumber *)reactTag
       NMFCameraUpdate* cameraUpdate = [NMFCameraUpdate
                                        cameraUpdateWithScrollTo:
                                        coord];
-      cameraUpdate.animation = NMFCameraUpdateAnimationEaseIn;
+      cameraUpdate.animation = NMFCameraUpdateAnimationFly;
       [((RNNaverMapView *)view).mapView moveCamera: cameraUpdate];
     }
   }];
