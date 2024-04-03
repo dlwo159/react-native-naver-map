@@ -200,26 +200,54 @@
     return;
   }
 
-  _reloadImageCancellationBlock = [[_bridge moduleForClass:[RCTImageLoader class]] loadImageWithURLRequest:[RCTConvert NSURLRequest:_image]
-                                                                          size:self.bounds.size
-                                                                         scale:RCTScreenScale()
-                                                                       clipped:YES
-                                                                    resizeMode:RCTResizeModeCenter
-                                                                 progressBlock:nil
-                                                              partialLoadBlock:nil
-                                                               completionBlock:^(NSError *error, UIImage *image) {
-                                                                 if (error) {
-                                                                   NSLog(@"%@", error);
-                                                                   return;
+ _reloadImageCancellationBlock = [[_bridge moduleForClass:[RCTImageLoader class]] loadImageWithURLRequest:[RCTConvert NSURLRequest:_image]
+                                                                         size:self.bounds.size
+                                                                        scale:RCTScreenScale()
+                                                                      clipped:YES
+                                                                   resizeMode:RCTResizeModeCenter
+                                                                progressBlock:nil
+                                                             partialLoadBlock:nil
+                                                              completionBlock:^(NSError *error, UIImage *image) {
+                                                                if (error) {
+                                                                  NSLog(@"%@", error);
+                                                                  return;
+                                                                }
+                                                                if(image) {
+                                                                 NSLog(@"마커");
                                                                  }
-                                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                                   if (self->_iconImageView) [self->_iconImageView removeFromSuperview];
-                                                                   NMFOverlayImage *overlayImage = [NMFOverlayImage overlayImageWithImage: image];
-                                                                   self->_realMarker.iconImage = overlayImage;
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  if (self->_iconImageView) [self->_iconImageView removeFromSuperview];
+                                                                  self->_iconImageView = [[UIImageView alloc] initWithImage:image];
+                                                                  self->_iconImageView.frame = self.bounds;
+                                                                  [self addSubview:self->_iconImageView];
+                                                                  NMFOverlayImage *overlayImage = [NMFOverlayImage overlayImageWithImage:image];
+                                                                  self->_realMarker.iconImage = overlayImage;
 
-                                                                   [_overlayImageHolder setObject:overlayImage forKey:self->_image];
-                                                                 });
-                                                               }];
+                                                                  [_overlayImageHolder setObject:overlayImage forKey:self->_image];
+                                                                });
+                                                              }]; 
 }
+
+//   _reloadImageCancellationBlock = [[_bridge moduleForClass:[RCTImageLoader class]] loadImageWithURLRequest:[RCTConvert NSURLRequest:_image]
+//                                                                           size:self.bounds.size
+//                                                                          scale:RCTScreenScale()
+//                                                                        clipped:YES
+//                                                                     resizeMode:RCTResizeModeCenter
+//                                                                  progressBlock:nil
+//                                                               partialLoadBlock:nil
+//                                                                completionBlock:^(NSError *error, UIImage *image) {
+//                                                                  if (error) {
+//                                                                    NSLog(@"%@", error);
+//                                                                    return;
+//                                                                  }
+//                                                                  dispatch_async(dispatch_get_main_queue(), ^{
+//                                                                    if (self->_iconImageView) [self->_iconImageView removeFromSuperview];
+//                                                                    NMFOverlayImage *overlayImage = [NMFOverlayImage overlayImageWithImage: image];
+//                                                                    self->_realMarker.iconImage = overlayImage;
+
+//                                                                    [_overlayImageHolder setObject:overlayImage forKey:self->_image];
+//                                                                  });
+//                                                                }];
+// }
 
 @end
