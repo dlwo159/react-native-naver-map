@@ -18,10 +18,6 @@
 
 #import "RCTConvert+NMFMapView.h"
 #import "RNNaverMapMarker.h"
-#import "RNNaverMapPolylineOverlay.h"
-#import "RNNaverMapPathOverlay.h"
-#import "RNNaverMapCircleOverlay.h"
-#import "RNNaverMapPolygonOverlay.h"
 
 @interface RNNaverMapView()
 @end
@@ -45,18 +41,6 @@
   if ([subview isKindOfClass:[RNNaverMapMarker class]]) {
     RNNaverMapMarker *marker = (RNNaverMapMarker*)subview;
     marker.realMarker.mapView = self.mapView;
-  } else if ([subview isKindOfClass:[RNNaverMapPolylineOverlay class]]) {
-    RNNaverMapPolylineOverlay *overlay = (RNNaverMapPolylineOverlay*)subview;
-    overlay.realOverlay.mapView = self.mapView;
-  } else if ([subview isKindOfClass:[RNNaverMapPathOverlay class]]) {
-    RNNaverMapPathOverlay *overlay = (RNNaverMapPathOverlay*)subview;
-    overlay.realOverlay.mapView = self.mapView;
-  } else if ([subview isKindOfClass:[RNNaverMapCircleOverlay class]]) {
-    RNNaverMapCircleOverlay *overlay = (RNNaverMapCircleOverlay*)subview;
-    overlay.realOverlay.mapView = self.mapView;
-  } else if ([subview isKindOfClass:[RNNaverMapPolygonOverlay class]]) {
-     RNNaverMapPolygonOverlay *overlay = (RNNaverMapPolygonOverlay*)subview;
-     overlay.realOverlay.mapView = self.mapView;
   } else {
     NSArray<id<RCTComponent>> *childSubviews = [subview reactSubviews];
     for (int i = 0; i < childSubviews.count; i++) {
@@ -72,18 +56,6 @@
   if ([subview isKindOfClass:[RNNaverMapMarker class]]) {
     RNNaverMapMarker *marker = (RNNaverMapMarker*)subview;
     marker.realMarker.mapView = nil;
-  } else if ([subview isKindOfClass:[RNNaverMapPolylineOverlay class]]) {
-    RNNaverMapPolylineOverlay *overlay = (RNNaverMapPolylineOverlay*)subview;
-    overlay.realOverlay.mapView = nil;
-  } else if ([subview isKindOfClass:[RNNaverMapPathOverlay class]]) {
-    RNNaverMapPathOverlay *overlay = (RNNaverMapPathOverlay*)subview;
-    overlay.realOverlay.mapView = nil;
-  } else if ([subview isKindOfClass:[RNNaverMapCircleOverlay class]]) {
-    RNNaverMapCircleOverlay *overlay = (RNNaverMapCircleOverlay*)subview;
-    overlay.realOverlay.mapView = nil;
-  } else if ([subview isKindOfClass:[RNNaverMapPolygonOverlay class]]) {
-    RNNaverMapPolygonOverlay *overlay = (RNNaverMapPolygonOverlay*)subview;
-    overlay.realOverlay.mapView = nil;
   } else {
     NSArray<id<RCTComponent>> *childSubviews = [subview reactSubviews];
     for (int i = 0; i < childSubviews.count; i++) {

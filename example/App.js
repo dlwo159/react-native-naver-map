@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useEffect, useRef, useState} from 'react';
-import NaverMapView, {Align, Circle, Marker, Path, Polygon, Polyline} from "./map";
+import NaverMapView, {Align, Marker} from "./map";
 import {Image, ImageBackground, PermissionsAndroid, Platform, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -65,10 +65,6 @@ const MapViewScreen = ({navigation}) => {
             <Marker coordinate={P1} pinColor="blue" zIndex={1000} onClick={() => console.warn('onClick! p1')}/>
             <Marker coordinate={P2} pinColor="red" zIndex={100} alpha={0.5} onClick={() => console.warn('onClick! p2')}/>
             <Marker coordinate={P4} onClick={() => console.warn('onClick! p4')} image={require("./marker.png")} width={48} height={48}/>
-            <Path coordinates={[P0, P1]} onClick={() => console.warn('onClick! path')} width={10}/>
-            <Polyline coordinates={[P1, P2]} onClick={() => console.warn('onClick! polyline')}/>
-            <Circle coordinate={P0} color={"rgba(255,0,0,0.3)"} radius={200} onClick={() => console.warn('onClick! circle')}/>
-            <Polygon coordinates={[P0, P1, P2]} color={`rgba(0, 0, 0, 0.5)`} onClick={() => console.warn('onClick! polygon')}/>
             <Marker coordinate={P5} onClick={() => console.warn('onClick! p0')} width={96} height={96}>
                 <View style={{backgroundColor: 'rgba(255,0,0,0.2)', borderRadius: 80}}>
                     <View style={{backgroundColor: 'rgba(0,0,255,0.3)', borderWidth: 2, borderColor: 'black', flexDirection: 'row'}}>

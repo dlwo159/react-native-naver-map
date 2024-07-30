@@ -188,48 +188,4 @@ export interface MarkerProps extends MapOverlay {
 export declare class Marker extends Component<MarkerProps> {
     render(): JSX.Element;
 }
-export interface CircleProps extends MapOverlay {
-    radius?: number;
-    color?: string;
-    outlineWidth?: number;
-    outlineColor?: string;
-    zIndex?: number;
-}
-export declare class Circle extends Component<CircleProps> {
-    render(): JSX.Element;
-}
-interface PolylineProps extends Omit<MapOverlay, "coordinate"> {
-    coordinates: Coord[];
-    strokeWidth?: number;
-    strokeColor?: string;
-}
-export declare class Polyline extends Component<PolylineProps> {
-    render(): JSX.Element;
-}
-interface PolygonProps extends Omit<MapOverlay, "coordinate"> {
-    coordinates: Coord[];
-    outlineWidth?: number;
-    outlineColor?: string;
-    color?: string;
-    holes?: Coord[][];
-}
-export declare class Polygon extends Component<PolygonProps> {
-    render(): JSX.Element;
-}
-export interface PathProps extends Omit<MapOverlay, "coordinate"> {
-    coordinates: Coord[];
-    width?: number;
-    color?: string;
-    outlineWidth?: number;
-    passedColor?: string;
-    outlineColor?: string;
-    passedOutlineColor?: string;
-    pattern?: ImageSourcePropType;
-    patternInterval?: number;
-    progress?: number;
-    zIndex?: number;
-}
-export declare class Path extends Component<PathProps> {
-    render(): JSX.Element;
-}
 export {};

@@ -6,10 +6,7 @@ const RNNaverMapViewTexture = Platform.select({
     ios: () => RNNaverMapView
 })();
 const RNNaverMapMarker = requireNativeComponent('RNNaverMapMarker');
-const RNNaverMapPathOverlay = requireNativeComponent('RNNaverMapPathOverlay');
-const RNNaverMapPolylineOverlay = requireNativeComponent('RNNaverMapPolylineOverlay');
-const RNNaverMapCircleOverlay = requireNativeComponent('RNNaverMapCircleOverlay');
-const RNNaverMapPolygonOverlay = requireNativeComponent('RNNaverMapPolygonOverlay');
+
 export var TrackingMode;
 (function (TrackingMode) {
     TrackingMode[TrackingMode["None"] = 0] = "None";
@@ -111,32 +108,6 @@ export class Marker extends Component {
     render() {
         var _a, _b;
         return React.createElement(RNNaverMapMarker, Object.assign({}, this.props, { image: getImageUri(this.props.image), caption: this.props.caption && Object.assign(Object.assign({}, this.props.caption), { textSize: (_a = this.props.caption.textSize) !== null && _a !== void 0 ? _a : 12, color: parseColor(this.props.caption.color), haloColor: parseColor(this.props.caption.haloColor) }), subCaption: this.props.subCaption && Object.assign(Object.assign({}, this.props.subCaption), { textSize: (_b = this.props.subCaption.textSize) !== null && _b !== void 0 ? _b : 12, color: parseColor(this.props.subCaption.color), haloColor: parseColor(this.props.subCaption.haloColor) }) }));
-    }
-}
-export class Circle extends Component {
-    render() {
-        return React.createElement(RNNaverMapCircleOverlay, Object.assign({}, this.props));
-    }
-}
-export class Polyline extends Component {
-    render() {
-        return React.createElement(RNNaverMapPolylineOverlay, Object.assign({}, this.props));
-    }
-}
-export class Polygon extends Component {
-    render() {
-        return Platform.select({
-            android: () => React.createElement(RNNaverMapPolygonOverlay, Object.assign({}, this.props)),
-            ios: () => React.createElement(RNNaverMapPolygonOverlay, Object.assign({}, this.props, { coordinates: {
-                    exteriorRing: this.props.coordinates,
-                    interiorRings: this.props.holes,
-                } }))
-        })();
-    }
-}
-export class Path extends Component {
-    render() {
-        return React.createElement(RNNaverMapPathOverlay, Object.assign({}, this.props, { pattern: getImageUri(this.props.pattern) }));
     }
 }
 function getImageUri(src) {

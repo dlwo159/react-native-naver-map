@@ -7,10 +7,6 @@ const RNNaverMapViewTexture = Platform.select({
     ios: () => RNNaverMapView
 })();
 const RNNaverMapMarker = requireNativeComponent('RNNaverMapMarker');
-const RNNaverMapPathOverlay = requireNativeComponent('RNNaverMapPathOverlay');
-const RNNaverMapPolylineOverlay = requireNativeComponent('RNNaverMapPolylineOverlay');
-const RNNaverMapCircleOverlay = requireNativeComponent('RNNaverMapCircleOverlay');
-const RNNaverMapPolygonOverlay = requireNativeComponent('RNNaverMapPolygonOverlay');
 
 export interface Coord {
     latitude: number;
@@ -288,78 +284,6 @@ export class Marker extends Component<MarkerProps> {
                 color: parseColor(this.props.subCaption.color),
                 haloColor: parseColor(this.props.subCaption.haloColor),
             }}/>
-    }
-}
-
-export interface CircleProps extends MapOverlay {
-    radius?: number;
-    color?: string;
-    outlineWidth?: number;
-    outlineColor?: string;
-    zIndex?: number;
-}
-
-export class Circle extends Component<CircleProps> {
-    render() {
-        return <RNNaverMapCircleOverlay {...this.props} />;
-    }
-}
-
-interface PolylineProps extends Omit<MapOverlay, "coordinate"> {
-    coordinates: Coord[];
-    strokeWidth?: number;
-    strokeColor?: string;
-}
-
-export class Polyline extends Component<PolylineProps> {
-    render() {
-        return <RNNaverMapPolylineOverlay {...this.props} />;
-    }
-}
-
-interface PolygonProps extends Omit<MapOverlay, "coordinate"> {
-    coordinates: Coord[];
-    outlineWidth?: number;
-    outlineColor?: string
-    color?: string;
-    holes?: Coord[][];
-}
-
-export class Polygon extends Component<PolygonProps> {
-    render() {
-        return Platform.select({
-            android: () => <RNNaverMapPolygonOverlay {...this.props} />,
-            ios: () => <RNNaverMapPolygonOverlay
-                {...this.props}
-                coordinates={{
-                    exteriorRing: this.props.coordinates,
-                    interiorRings: this.props.holes,
-                }}
-            />
-        })();
-    }
-}
-
-export interface PathProps extends Omit<MapOverlay, "coordinate"> {
-    coordinates: Coord[];
-    width?: number;
-    color?: string;
-    outlineWidth?: number;
-    passedColor?: string;
-    outlineColor?: string;
-    passedOutlineColor?: string;
-    pattern?: ImageSourcePropType;
-    patternInterval?: number;
-    progress?: number;
-    zIndex?: number;
-}
-
-export class Path extends Component<PathProps> {
-    render() {
-        return <RNNaverMapPathOverlay
-            {...this.props}
-            pattern={getImageUri(this.props.pattern)}
-        />
     }
 }
 
